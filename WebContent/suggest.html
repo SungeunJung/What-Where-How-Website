@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  	<meta charset="UTF-8">
+  	<link href="main.css" type="text/css" rel="stylesheet">
+  	<link href="suggest.css" type="text/css" rel="stylesheet">
+    <title>WWH</title>
+    <script>
+		var post = null;
+		var img = "";
+		var title = "";
+		var nickname = "";
+		var date = "";
+		var like = "";
+		
+		function display () {
+			if(localStorage.getItem('postSuggest')) {
+				post = JSON.parse(localStorage.getItem('postSuggest'));
+			}
+			var divtag = "";
+			if(!post) return;
+			for(i=0; i<post.length; i++) {
+				title = post[i].title;
+				nickname = post[i].writer;
+				date = post[i].date.split('T')[0];
+				like = post[i].like;
+				var index = post[i].index;
+				divtag = "<tr class='suggest-post' onclick='getPostPage("+index+")'><td class='suggest-num'>"+(i+1)+"</td><td class='suggest-title'>"+title+"</td><td class='suggest-nick'>"+nickname+"</td><td class='suggest-date'>"+date+"</td><td class='suggest-like'>"+like+"</td></tr>";
+				console.log(divtag)
+				document.write(divtag);
+			}
+		}
+		
+		function getPostPage(index) {
+			window.location.assign("suggestDetail.html?post_id="+index);
+		}
+		
+		function handlePosting () {
+			//if(로그인유저) {}
+			window.location.replace("writeSuggestPost.html");
+		}
+		
+	</script>
+ </head>
+<body>
+<header>
+    <h1><span><a href="/">WWH</a></span></h1>
+    <nav>
+	<ul>
+		<li><a href="hobby.html"> 취미 </a></li>
+		<li><a href="daily.html"> 일상 </a></li>
+		<li><a href="suggest.html"> 건의사항 </a></li>
+		<li><a href="#"> 마이페이지 </a></li>
+		<li style="font-size:22px; margin-top:5px;"><a href="login.html"> 로그인 </a></li>
+	</ul>
+</nav>
+</header>
+
+  
+<section>
+	<article class="hobby">
+		<table style="width:100%">
+			<thead>
+				<tr>
+					<td> <h2 class="title">건의사항 | <span style="font-size:25px">운영자에게 건의할 사항을 알려주세요</span></h2>  </td>
+					<td style="text-align:right"> <button style="width:80px; height:30px" onclick="handlePosting()">작성하기</button> </td>
+				</tr>
+			</thead>
+		</table>
+			
+		<table class='suggest-table'>
+			<thead>
+				<tr>
+				<th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>좋아요</th>
+				</tr>
+			</thead>
+			<tbody>
+				<script>
+					display();
+				</script>
+			</tbody>
+		</table>
+   	</article>
+</section>
+ <footer>
+ 	<p>Copyright 2021 by SungEun</p>
+ </footer>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="main.css" type="text/css" rel="stylesheet">
+<title>WWH 회원가입</title>
+<meta name="author" content="황수연">
+<meta name="discription" content="취향공유 웹사이트-회원가입">
+<meta name="keywords" content="취향, 일상, 공유">
+
+<style>
+	h1{ text-align:center }
+	input,button{ font-size:15px; height:40px; width:250px;}
+	#signUp{ background-color:#9cd3f7; border:0}
+</style>
+
+<script>
+var userInfos = new Array();
+
+function mysignUp(){
+	if(!window.localStorage){
+		alert("로컬스토리지 미지원");
+		return;
+	}
+	
+	//입력폼에서 아이디,비밀번호,이메일 가져오기
+	var id = document.getElementById("id").value;
+	var pw = document.getElementById("pw").value;
+	var email = document.getElementById("email").value;
+	
+	//사용자정보 객체 생성, 정보 저장
+	var userInfo = new Object();
+	userInfo.id = id;
+	userInfo.pw = pw;
+	userInfo.email = email;
+	userInfo.role = 0;
+	userInfo.like = new Array();
+	userInfo.mypost = new Array();
+	
+	//사용자정보 객체의 배열에 새로운 회원정보 저장
+	userInfos[userInfos.length] = userInfo;
+	
+	//로컬스토리지에 저장
+	localStorage.setItem("user", JSON.stringify(userInfos));
+}
+
+//로그인 상태인지 확인
+function checkLog(){
+	var currentLog = localStorage.getItem("login");
+	if(currentLog != null){
+		var logInButton = document.getElementById("logInButton");
+		logInbutton.innerHTMl = "로그아웃";
+	}
+}
+
+</script>
+</head>
+
+<body onload="checkLog()">
+<header>
+    <h1><span><a href="/">WWH</a></span></h1>
+    <nav>
+	<ul>
+		<li><a href="hobby.html"> 취미 </a></li>
+		<li><a href="daily.html"> 일상 </a></li>
+		<li><a href="suggest.html"> 건의사항 </a></li>
+		<li><a href="#"> 마이페이지 </a></li>
+		<li style="font-size:22px; margin-top:5px;" id="logInButton"><a href="login.html"> 로그인 </a></li>
+	</ul>
+</nav>
+</header>
+
+<section>
+	<h1>회원가입</h1>
+	<form style="text-align:center">
+		<input id="id" type="text" placeholder="Username"><br><br>
+		<input id="email" type="text" placeholder="Email"><br><br>
+		<input id="pw" type="password" placeholder="Password"><br><br>
+		<input type="button" id="signUp" onclick="mysignUp()" value="SignUp">
+	</form>
+</section>
+
+</body>
+</html>

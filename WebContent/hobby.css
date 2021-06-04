@@ -14,3 +14,8 @@ section {
 	font-size: 40px;
 	margin: 10px 0 40px 0;
 }
+
+.post:hover {
+	cursor: pointer;
+	background-color: gray;
+}

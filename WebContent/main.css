@@ -60,6 +60,8 @@ h2 span {
 .post:last-child {
 	margin-right: 0;
 }
+
+
 .image {
 	display: inline-block;
 	background-color: lightgray;
@@ -67,3 +69,4 @@ h2 span {
 	height: 80%;
 	margin-bottom: 20px;
 }
+

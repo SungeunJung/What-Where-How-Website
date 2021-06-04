@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  	<meta charset="UTF-8">
+  	<link href="main.css" type="text/css" rel="stylesheet">
+  	<link href="writeHobbyPost.css" type="text/css" rel="stylesheet">
+    <title>WWH</title>
+    <script>
+    	var user = "";
+    	function checkUser() { //로그인 확인
+    		//if(localStorage.getItem())
+    	}
+    	function cancel() {
+    		var ret = confirm("글 작성하기를 취소하시겠습니까?")
+    		if(ret == true) {
+    			window.location.href= "/";
+    		}
+    	}
+    	
+    	function submitHandler(e) {
+    		//e.preventDefault();
+    		var title = document.getElementById("title").value;
+    		var content = document.getElementById("content").value;
+    		var index = 0;
+    		var postArr = [];
+    		if(!title) { alert("제목을 입력해주세요!"); return; }
+    		else if(!content) { alert("내용을 입력해주세요!"); return; }
+    		if(localStorage.getItem('postDaily')) {
+    			postArr = JSON.parse(localStorage.getItem('postDaily'));
+    			index = postArr.length;
+    		}
+ 
+    		var post = {
+    				index: index,
+    				writer: 'sungeun', //나중에 현재 로그인된 아이디로 수정 필요
+    				title: title,
+    				content: content,
+    				date: new Date().toISOString(),
+    				like: 0,
+    				comments: [],
+    				image: "",
+    		}
+    		console.log(post.date)
+    		postArr.push(post);
+    		localStorage.setItem('postDaily', JSON.stringify(postArr));
+    	}
+    </script>
+ </head>
+<body onload="checkUser();">
+<header>
+    <h1><span><a href="/">WWH</a></span></h1>
+    <nav>
+	<ul>
+		<li><a href="hobby.html"> 취미 </a></li>
+		<li><a href="daily.html"> 일상 </a></li>
+		<li><a href="suggest.html"> 건의사항 </a></li>
+		<li><a href="#"> 마이페이지 </a></li>
+		<li style="font-size:22px; margin-top:5px;"><a href="login.html"> 로그인 </a></li>
+	</ul>
+</nav>
+</header>
+
+<section>
+	<article class="hobby">
+		<h2 class="title">일상 | <span style="font-size:25px">일상의 이야기를 나누는 공간</span></h2> 
+		<form action="fileUpload.jsp?type=daily" enctype="multipart/form-data" method="post" 
+		name="fileinfo" class="container" onsubmit="submitHandler(event)">
+  			<div class="label">
+	  			<label><span>제목</span>
+	  			<input type="text" id="title" required size="80" maxlength="64" style="width:85%"/><br />
+	  			</label>
+	  		</div>
+	  		<hr style="margin-bottom:30px">
+	  		<div class="label">
+	  			<label><span>내용</span>
+	  			<textarea cols="82" rows="20" style="width:85%" id="content"></textarea><br />
+	  			</label>
+	  		</div>
+	  		<hr style="margin-bottom:30px">
+	  		<div class="label">
+	  			<label><span>사진</span>
+	  			<input type="file" name="photo" required />
+	  			</label>
+	  		</div>
+	  		<div class="buttons">
+	  			<input class="button" type="submit" value="저장">
+	  			<input class="button" type="button" value="취소" onclick="cancel()">
+  			</div>
+		</form>
+   	</article>
+   
+</section>
+ <footer>
+ 	<p>Copyright 2021 by SungEun</p>
+ </footer>
+</body>
+</html>

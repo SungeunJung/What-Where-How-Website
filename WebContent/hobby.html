@@ -15,37 +15,48 @@
 				post = JSON.parse(localStorage.getItem('postHobby'));
 			}
 			var divtag = "";
+			if(!post) return;
 			for(i=0; i<post.length; i++) {
 				img = post[i].image;
 				title = post[i].title;
 				var index = post[i].index
-				divtag = "<div class='post' onclick='getPostPage("+index+")'><div class='image'><img src='"+img+"' width='170' height='170'/></div><div class='hobby-title'>"+title+"</div></div>";
+				divtag = "<div class='post' onmouseover='mouseover(this)' onmouseout='mouseout(this)' onclick='getPostPage("+index+")'><div class='image'><img src='"+img+"' width='170' height='170'/></div><div class='hobby-title'>"+title+"</div></div>";
 				console.log(divtag)
 				document.write(divtag);
 			}
 		}
 		
+		function mouseover(post) {
+			post.style.border = '1px solid gray';
+			post.style.backgroundColor = 'lightgray';
+		}
+		
+		function mouseout(post) {
+			post.style.border = 'none';
+			post.style.backgroundColor = 'transparent';
+		}
+		
 		function getPostPage(index) {
-			window.location.replace("hobbyDetail.html?post_id="+index);
+			window.location.assign("hobbyDetail.html?post_id="+index);
 		}
 		
 		function handlePosting () {
 			//if(로그인유저) {}
-			window.location.href = "writeHobbyPost.html";
+			window.location.replace("writeHobbyPost.html");
 		}
 		
 	</script>
  </head>
 <body>
 <header>
-    <h1><span><a href="main.html">WWH</a></span></h1>
+    <h1><span><a href="/">WWH</a></span></h1>
     <nav>
 	<ul>
 		<li><a href="hobby.html"> 취미 </a></li>
-		<li><a href="#"> 일상 </a></li>
-		<li><a href="#"> 건의사항 </a></li>
+		<li><a href="daily.html"> 일상 </a></li>
+		<li><a href="suggest.html"> 건의사항 </a></li>
 		<li><a href="#"> 마이페이지 </a></li>
-		<li style="font-size:22px; margin-top:5px;"><a href="#"> 로그인 </a></li>
+		<li style="font-size:22px; margin-top:5px;"><a href="login.html"> 로그인 </a></li>
 	</ul>
 </nav>
 </header>
@@ -56,7 +67,7 @@
 	<table style="width:100%">
 		<tr>
 			<td> <h2 class="title">취미 | <span style="font-size:25px">다양한 취미를 공유하는 공간</span></h2>  </td>
-			<td style="text-align:right"> <button style="width:100px; height:30px" onclick="handlePosting()">글 작성하기</button> </td>
+			<td style="text-align:right"> <button style="width:80px; height:30px" onclick="handlePosting()">작성하기</button> </td>
 		</tr>
 	</table>
 		
