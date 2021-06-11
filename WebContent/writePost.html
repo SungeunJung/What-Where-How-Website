@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  	<meta charset="UTF-8">
+  	<link href="main.css?ver=1" type="text/css" rel="stylesheet">
+  	<link href="writePost.css?ver=1" type="text/css" rel="stylesheet">
+  	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.2-dist/css/bootstrap.min.css">
+  	<link rel="stylesheet" type="text/css" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>WWH</title>
+    <script src="Header.js?ver=3"></script>
+    <script src="WritePost.js?ver=1"></script>
+    <script>
+    	const postType = getURLParams(location.search).postType;
+    	var urlTo = "";
+    	switch(postType) {
+	    	case 'postHobby': 
+	    		urlTo = "hobby"; 
+	    		break;
+	    	case 'postDaily': 
+	    		urlTo = "daily"; 
+	    		break;
+	    	case 'postSuggest': 
+	    		urlTo = "suggest"; 
+	    		break;
+    	}
+    	
+    	function checkUser() { //로그인 확인
+        	//if(localStorage.getItem())
+        }
+    </script>
+ </head>
+<body onload="checkUser();">
+<div class="main-section">
+	<header class="hero-wrap js-fullheight" style="height:65px">
+		<script>setHeader();</script>
+	</header>
+	<section class="ftco-section pb-0">
+		<article class="container">
+		<script type="text/javascript">setBoardName();</script>
+			
+	   	</article>
+	</section>
+	<section class="ftco-section ftco-section-2 bg-light">
+	<article class="container" style="width:80%">
+		<form enctype="multipart/form-data" method="post" class="form-horizontal"
+		name="fileinfo" onsubmit="submitHandler(this)">
+  			<div class="form-group">
+	  			<label style="font-size:18px">제목 </label>
+	  			<input id="title" type="text" class="form-control" maxlength="64" required/><br />
+	  		</div>
+	  		<hr style="margin-bottom:30px">
+	  		<div class="form-group">
+	  			<label style="font-size:18px">내용</label>
+	  			<textarea id="content" class="form-control" style="height:150px !important;" cols="82" rows="20" required></textarea><br />
+	  		</div>
+	  		<hr style="margin-bottom:30px">
+	  		<div class="form-group">
+	  			<label style="font-size:18px">사진 업로드</label>
+	  			<input type="file" name="photo" />
+	  		</div>
+	  		<div style="display:flex; align-items:center; justify-content:center;">
+	  			<input class="btn btn-outline-primary" style="margin: 0.5em" type="submit" value="저장">
+	  			<input class="btn btn-outline-danger" style="margin: 0.5em" type="button" value="취소" onclick="cancel()">
+  			</div>
+		</form>
+   	</article>
+   
+</section>
+ <footer class="ftco-section ftco-section-2">
+		<div class="col-md-12 text-center">
+ 			<p>Copyright &copy;2021 by SungEun</p>
+ 		</div>
+ 	</footer>
+ </div>
+</body>
+</html>

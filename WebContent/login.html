@@ -1,126 +1,121 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link href="main.css" type="text/css" rel="stylesheet">
-<title>WWH 로그인</title>
-<meta name="author" content="황수연">
-<meta name="discription" content="취향공유 웹사이트-로그인">
-<meta name="keywords" content="취향, 일상, 공유">
-
-<style>
-	h1 { text-align:center; }
-	input,button,form>div { font-size:15px; height:40px; width:250px;}
-	#login { background-color:#9cd3f7; border:0;}
-	form>span { display:inline-block; text-align:left; font-size:13px;}
-	form>span>a { text-decoration:underline; color:blue;}
-	input[type="checkbox"] { width:15px; height:15px;}
-	input[type="button"]:hover { cursor:pointer; }
-</style>
-
-<script>
-//localStorage에 저장된 JSON string을 읽어들임
-var userstr = localStorage.getItem("user");
-//object로 파싱 후 배열 리턴, userInfos에 저장
-var userInfos = JSON.parse(userstr);
-
-//로그인 함수
-function logIn(){
-	if(!window.localStorage){
-		alert("로컬스토리지 미지원");
-		return;
-	}
+	<meta charset="UTF-8">
+	<link href="main.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/ionicons.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>WWH 로그인</title>
+	<meta name="author" content="황수연">
+	<meta name="discription" content="취향공유 웹사이트-로그인">
+	<meta name="keywords" content="취향, 일상, 공유">
+	<script src="Header.js"></script>
+	<style>
+		h1 { text-align:center; }
+		input,button,form>div { font-size:15px; height:40px; width:250px;}
+		#login { background-color:#9cd3f7; border:0;}
+		form>span { display:inline-block; text-align:left; font-size:13px;}
+		form>span>a { text-decoration:underline; color:blue;}
+		input[type="checkbox"] { width:15px; height:15px;}
+		input[type="button"]:hover { cursor:pointer; }
+	</style>
 	
-	//입력폼에서 아이디,비밀번호 가져오기
-	var id = document.getElementById("id").value;
-	var pw = document.getElementById("pw").value;
+	<script>
+	//localStorage에 저장된 JSON string을 읽어들임
+	var userstr = localStorage.getItem("user");
+	//object로 파싱 후 배열 리턴, userInfos에 저장
+	var userInfos = JSON.parse(userstr);
 	
-	//입력창이 빈 경우
-	if(id == "" || pw == ""){
-		alert("아이디나 비밀번호를 입력하세요");
-		return;
-	}
-
-	//아이디 저장하기 체크박스가 체크된 경우
-	if(document.getElementById("saveId").checked){
-		setCookie("saveId",id,null);
-	}
-	//아이디 저장하기 체크박스 체크되지 않은 경우 -> 필요 없나?
-	else{
-		if(getCookie("saveId") == null)
+	//로그인 함수
+	function logIn(){
+		if(!window.localStorage){
+			alert("로컬스토리지 미지원");
 			return;
+		}
+		
+		//입력폼에서 아이디,비밀번호 가져오기
+		var id = document.getElementById("id").value;
+		var pw = document.getElementById("pw").value;
+		
+		//입력창이 빈 경우
+		if(id == "" || pw == ""){
+			alert("아이디나 비밀번호를 입력하세요");
+			return;
+		}
+	
+		//아이디 저장하기 체크박스가 체크된 경우
+		if(document.getElementById("saveId").checked){
+			setCookie("saveId",id,null);
+		}
+		//아이디 저장하기 체크박스 체크되지 않은 경우 -> 필요 없나?
 		else{
-			//쿠키 삭제 -> expiredate 사용?
-			//https://ktko.tistory.com/entry/Cookie%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-%EC%95%84%EC%9D%B4%EB%94%94-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0
+			if(getCookie("saveId") == null)
+				return;
+			else{
+				//쿠키 삭제 -> expiredate 사용?
+				//https://ktko.tistory.com/entry/Cookie%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-%EC%95%84%EC%9D%B4%EB%94%94-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0
+			}
+		}
+		
+		//로컬스토리지에서 아이디, 비밀번호 찾기
+		for(var i=0;i<userInfos.length;i++){
+			if(userInfos[i].id == id){
+				//아이디와 비밀번호 모두 일치하면 로그인 상태 true로 저장
+				if(userInfos[i].pw == pw)
+					localStorage.setItem("login",true);
+			}
+			else {
+				alert("로그인 정보가 틀립니다.");
+			}
+		}
+		
+		//아이디, 비밀번호 입력창 비우기
+		document.getElementById("id").value = "";
+		document.getElementById("pw").value = "";
+		
+	}
+	
+	//새로운 쿠키 저장
+	function setCookie(name,value,expireDate){
+		var cookieStr = name + "=" + escape(value) + 
+			((expireDate == null)?"":("; expires="+expireDate.toGMTString()));
+		document.cookie = cookieStr;
+	}
+	
+	//저장된 쿠키의 value 가져오기
+	function getCookie(name){
+		var pairs = document.cookie.split(";");
+		
+		for(var i=0;i<pairs.length;i++){
+			var pair = pairs[i].trim();
+			var unit = pair.split("=");
+			//저장된 쿠키(아이디)가 있으면 아이디 리턴
+			if(unit[0] == name) 	//unit[0]은 쿠키의 name
+				return unescape(unit[1]);
+		}
+		//저장된 쿠키(아이디)가 없으면 null 리턴
+		return null;
+	}
+	
+	//로그인 페이지 새로 띄울 때 
+	function showId(){
+		var idCookie = getCookie("saveId");
+		console.log(idCookie);
+		//쿠키에 저장된 아이디가 있으면
+		if(idCookie != null){
+			var idInput = document.getElementById("id");
+			idInput.value = idCookie;
 		}
 	}
-	
-	//로컬스토리지에서 아이디, 비밀번호 찾기
-	for(var i=0;i<userInfos.length;i++){
-		if(userInfos[i].id == id){
-			//아이디와 비밀번호 모두 일치하면 로그인 상태 true로 저장
-			if(userInfos[i].pw == pw)
-				localStorage.setItem("login",true);
-		}
-		else {
-			alert("로그인 정보가 틀립니다.");
-		}
-	}
-	
-	//아이디, 비밀번호 입력창 비우기
-	document.getElementById("id").value = "";
-	document.getElementById("pw").value = "";
-	
-}
-
-//새로운 쿠키 저장
-function setCookie(name,value,expireDate){
-	var cookieStr = name + "=" + escape(value) + 
-		((expireDate == null)?"":("; expires="+expireDate.toGMTString()));
-	document.cookie = cookieStr;
-}
-
-//저장된 쿠키의 value 가져오기
-function getCookie(name){
-	var pairs = document.cookie.split(";");
-	
-	for(var i=0;i<pairs.length;i++){
-		var pair = pairs[i].trim();
-		var unit = pair.split("=");
-		//저장된 쿠키(아이디)가 있으면 아이디 리턴
-		if(unit[0] == name) 	//unit[0]은 쿠키의 name
-			return unescape(unit[1]);
-	}
-	//저장된 쿠키(아이디)가 없으면 null 리턴
-	return null;
-}
-
-//로그인 페이지 새로 띄울 때 
-function showId(){
-	var idCookie = getCookie("saveId");
-	console.log(idCookie);
-	//쿠키에 저장된 아이디가 있으면
-	if(idCookie != null){
-		var idInput = document.getElementById("id");
-		idInput.value = idCookie;
-	}
-}
-</script>
+	</script>
 </head>
 
 <body onload="showId()">
-<header>
-    <h1><span><a href="/">WWH</a></span></h1>
-    <nav>
-	<ul>
-		<li><a href="hobby.html"> 취미 </a></li>
-		<li><a href="daily.html"> 일상 </a></li>
-		<li><a href="suggest.html"> 건의사항 </a></li>
-		<li><a href="#"> 마이페이지 </a></li>
-		<li style="font-size:22px; margin-top:5px;"><a href="login.html"> 로그인 </a></li>
-	</ul>
-</nav>
-</header>
+<div class="main-section">
+		<header class="hero-wrap js-fullheight" style="height:65px">
+			<script>setHeader();</script>
+		</header>
 
 <section>
 	<h1>로그인</h1>
@@ -136,5 +131,6 @@ function showId(){
 		<input type="button" id="login" onclick="logIn()" value="Login">
 	</form>
 </section>
+    </div>
 </body>
 </html>

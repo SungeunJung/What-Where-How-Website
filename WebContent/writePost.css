@@ -1,0 +1,27 @@
+
+textarea {
+	vertical-align: top;
+}
+
+label span {
+	font-size:20px;
+	margin-right: 20px;
+}
+
+input {
+	line-height:25px;
+}
+
+.title {
+	font-size: 40px;
+	margin: 10px 0 40px 0;
+}
+
+.label {
+	margin: 0 0 35px 5%;
+}
+
+.button {
+	width: 50px;
+	height: 30px;
+}

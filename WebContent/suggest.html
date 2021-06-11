@@ -2,9 +2,14 @@
 <html>
  <head>
   	<meta charset="UTF-8">
-  	<link href="main.css" type="text/css" rel="stylesheet">
-  	<link href="suggest.css" type="text/css" rel="stylesheet">
+  	<link href="main.css?ver=1" type="text/css" rel="stylesheet">
+  	<link href="hobby.css?ver=1" type="text/css" rel="stylesheet">
+  	<link href="bootstrap-3.3.2-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+  	<link rel="stylesheet" type="text/css" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>WWH</title>
+    <script src="Header.js?ver=3"></script>
     <script>
 		var post = null;
 		var img = "";
@@ -26,49 +31,41 @@
 				like = post[i].like;
 				var index = post[i].index;
 				divtag = "<tr class='suggest-post' onclick='getPostPage("+index+")'><td class='suggest-num'>"+(i+1)+"</td><td class='suggest-title'>"+title+"</td><td class='suggest-nick'>"+nickname+"</td><td class='suggest-date'>"+date+"</td><td class='suggest-like'>"+like+"</td></tr>";
-				console.log(divtag)
+				
 				document.write(divtag);
 			}
 		}
 		
 		function getPostPage(index) {
-			window.location.assign("suggestDetail.html?post_id="+index);
+			window.location.assign("detail.html?postType=postSuggest&post_id="+index);
 		}
 		
 		function handlePosting () {
 			//if(로그인유저) {}
-			window.location.replace("writeSuggestPost.html");
+			window.location.replace("writePost.html?postType=postSuggest");
 		}
 		
 	</script>
  </head>
 <body>
-<header>
-    <h1><span><a href="/">WWH</a></span></h1>
-    <nav>
-	<ul>
-		<li><a href="hobby.html"> 취미 </a></li>
-		<li><a href="daily.html"> 일상 </a></li>
-		<li><a href="suggest.html"> 건의사항 </a></li>
-		<li><a href="#"> 마이페이지 </a></li>
-		<li style="font-size:22px; margin-top:5px;"><a href="login.html"> 로그인 </a></li>
-	</ul>
-</nav>
-</header>
-
-  
-<section>
-	<article class="hobby">
-		<table style="width:100%">
-			<thead>
-				<tr>
-					<td> <h2 class="title">건의사항 | <span style="font-size:25px">운영자에게 건의할 사항을 알려주세요</span></h2>  </td>
-					<td style="text-align:right"> <button style="width:80px; height:30px" onclick="handlePosting()">작성하기</button> </td>
-				</tr>
-			</thead>
-		</table>
-			
-		<table class='suggest-table'>
+	<div class="main-section">
+		<header class="hero-wrap js-fullheight" style="height:65px">
+			<script>setHeader();</script>
+		</header>
+		<section class="ftco-section pb-0">
+			<article class="container">
+				<table style="width:100%">
+					<tr>
+						<td> <h2 class="title"><b>건의사항</b> | <span style="font-size:25px">운영자에게 건의할 사항을 알려주세요</span></h2>  </td>
+						<td style="text-align:right"> <button class="btn btn-outline-primary btn-round" onclick="handlePosting()">작성하기</button> </td>
+					</tr>
+				</table>
+		   	</article>
+		</section>
+		<br/>
+		<section class="ftco-section ftco-section-2 bg-light" style="padding-top:30px;padding-bottom:30px;">
+			<article class="container">
+		<table class='table table-hover'>
 			<thead>
 				<tr>
 				<th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>좋아요</th>
@@ -82,8 +79,11 @@
 		</table>
    	</article>
 </section>
- <footer>
- 	<p>Copyright 2021 by SungEun</p>
- </footer>
+ 		<footer class="ftco-section ftco-section-2">
+			<div class="col-md-12 text-center">
+	 			<p>Copyright &copy;2021 by SungEun</p>
+	 		</div>
+	 	</footer>
+	</div>
 </body>
 </html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  	<meta charset="UTF-8">
+  	<link href="main.css?ver=3" type="text/css" rel="stylesheet">
+  	<link href="detail.css?ver=3" type="text/css" rel="stylesheet">
+  	<link href="hobby.css?ver=1" type="text/css" rel="stylesheet">
+  	<link href="bootstrap-3.3.2-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+  	<link rel="stylesheet" type="text/css" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>WWH</title>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="Header.js?ver=3"></script>
+    <script src="key.js"></script>
+    <script src="Detail.js?ver=2"></script>
+    <script>
+	    const index = getURLParams(location.search).post_id;
+	    const postType = getURLParams(location.search).postType;
+	    console.log(index);
+		getPost(postType);
+    </script>
+ </head>
+<body>
+	<div class="main-section">
+		<header class="hero-wrap js-fullheight" style="height:65px">
+			<script>setHeader();</script>
+		</header>
+		<section class="ftco-section pb-0">
+			<article class="container">
+				<script type="text/javascript">setBoardName();</script>
+	   		</article>
+		</section>
+		<section class="ftco-section ftco-section-2 bg-light">
+			<article class="container" style="width:80%">
+				<div class="post-title" id="post-title">title</div> 
+				<div style="margin-bottom:20px">
+					<table style="width:100%">
+					<tr>
+						<td> <span id="post-writer">writer</span> | <span id="post-date">date</span></td>
+						<td style="text-align:right"> <script>modifyPostBtn(); deletePostBtn();</script></td>
+					</tr>
+				</table>
+				</div>
+				<hr/>
+				<br/>
+				<img id="post-image" width="60%" height="50%" src=""/>
+				<div id="post-content">content</div>
+				<br/>
+			   	<hr/>
+			   	<br/>
+			   	<div class="buttons">
+				   	<span>
+				   		<script>
+					   		likeButton();
+					   	</script>
+				   	</span>
+				   	<button id="kakao-link-btn" type="button" class="btn btn-outline-warning btn-round" style="margin-left:5px;">
+						<img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" width=20 height=20>
+						공유하기
+					</button>
+				</div>
+	   		</article>
+   	
+		   	<article class="container" style="width:80%">
+				<div>댓글</div>
+				<form onsubmit="postComment(event)" style="margin:20px 0"> 
+				<textarea id="content" style="width:100%; height:50px"></textarea>
+				<button type="submit" class='btn btn-secondary' style="float:right">작성</button>
+				</form>
+				
+				<div class="comment" >
+					<script>display();</script>
+				</div>
+		   	</article>
+		</section>
+
+	<script>
+    	var dateArr = post.date.split('T');
+	    var timeArr = dateArr[1].split(':');
+	    
+	    document.getElementById('post-title').innerHTML = post.title;
+	    document.getElementById('post-writer').innerHTML = post.writer;
+	    document.getElementById('post-date').innerHTML = dateArr[0]+" "+timeArr[0]+":"+timeArr[1];
+	    document.getElementById('post-image').src = post.image;
+	    document.getElementById('post-content').innerHTML = post.content;
+	    
+	    if(window.Kakao) {
+	    	const kakao = window.Kakao
+	    	
+	    	if(!kakao.isInitailized) {
+	    		kakao.init(getKey());
+	    	}
+		    
+		    kakao.Link.createDefaultButton({
+		    	container:'#kakao-link-btn',
+		    	objectType: 'feed',
+		    	content:{
+		    		title:'카카오톡 공유 테스트',
+		    		description: '#취미 #집콕 #실내취미 #공유',
+		    		imageUrl: '',
+		    		link: {
+		    			mobileWebUrl: 'http://localhost8080',
+		    			webUrl: 'http://localhost8080'
+		    		}
+		    	},
+		    	buttons : [
+		    		{
+			    		title : '웹으로 보기',
+			    		link: {
+			    			mobileWebUrl: 'http://localhost8080',
+			    			webUrl: 'http://localhost8080'
+			    		},
+		    		},
+		    	]
+		    })
+	    }
+	    
+    </script>
+		<footer class="ftco-section ftco-section-2">
+			<div class="col-md-12 text-center">
+	 			<p>Copyright &copy;2021 by SungEun</p>
+	 		</div>
+	 	</footer>
+ 	</div>
+</body>
+</html>

@@ -2,73 +2,68 @@
 <html>
  <head>
   	<meta charset="UTF-8">
-  	<link href="main.css" type="text/css" rel="stylesheet">
+  	<link href="main.css?ver=1" type="text/css" rel="stylesheet">
+  	
+  	<link rel="stylesheet" type="text/css" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>WWH</title>
     <meta name="author" content="정성은, 황수연">
     <meta name="discription" content="취미공유 웹사이트">
     <meta name="keywords" content="취미, 일상, 공유">
+    <script src="Header.js?ver=3"></script>
  </head>
 <body>
+<div class="main-section">
+	<script>setHeader();</script>
 
-<header>
-    <h1><span><a href="/">WWH</a></span></h1>
-    <nav>
-	<ul>
-		<li><a href="hobby.html"> 취미 </a></li>
-		<li><a href="daily.html"> 일상 </a></li>
-		<li><a href="suggest.html"> 건의사항 </a></li>
-		<li><a href="#"> 마이페이지 </a></li>
-		<li style="font-size:22px; margin-top:5px;"><a href="login.html"> 로그인 </a></li>
-	</ul>
-</nav>
-</header>
+<section class="hero-wrap js-fullheight">
+	<article style="padding:50px 0">
+	  		<div class="container">
+	  			<div class="row description js-fullheight align-items-center justify-content-center">
+	  				<div class="col-md-8 text-center">
+	  						<div style="font-size:60px; color:white; margin-top:70px;">When Where How</div>
+	  						<h4 class="mb-5">Free Bootstrap 4 UI Kit on Tools Design.</h4>
+	  						<p><a href="login.html" class="btn btn-white px-4 py-3">시작하기</a></p>
+	  					
+	  				</div>
+	  			</div>
+	  		</div>
+  		</article>
+  	</section>
+  	<section class="ftco-section pb-0">
+	  	<div class="container">
+	  		<div class="row">
+	  			<div class="col-md-12 heading-title">
+	        		<h1>인기 취미 생활</h1>
+	        	</div>
+	  		</div>
+	  	</div>
+	</section>
+	<section class="ftco-section ftco-section-2 bg-light" id="cards">
+			<article class="container">
+				<div class="row">
+						<script>
+							//display();
+						</script>
+						<div class="col-md-4">
+						<div class="card">
+						  <img src="" class="card-img-top" alt="...">
+						  <div class="card-body">
+						  	<h5 class="card-title">Card title</h5>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</article>
+		</section>
+  	
+	<footer class="ftco-section ftco-section-2">
+		<div class="col-md-12 text-center">
+ 			<p>Copyright &copy;2021 by SungEun</p>
+ 		</div>
+ 	</footer>
+</div>
 
-  
-<section>
-	<article class="main">
-		<div class="introduce">
-			<h2 id="intro"><span>사이트 소개</span></h2>
-      		<p style="font-size:17px">
-      			코로나19 유행의 장기화로 인해 집에서 보내는 시간이 늘어나고,<br> 
-      			당분간 이러한 상황이 지속될 것이라는 전망에 따라 집에서 할 수 있는 건전한 취미생활 및 다른 사람들과의 소통의 <br>필요성이 커졌다. 
-				그러나 개인이 알고 있는 실내 취미 활동은 매우 한정적이어서 다양한 활동에 대한 접근 기회가 부족하다. 
-				따라서 자신이 하고 있는 취미 활동의 정보와 후기를 적어 다른 이들에게 공유하고, <br>
-				수많은 사람들의 데이터베이스를 바탕으로 자신이 해보지 못한 새로운 활동에 대해 알아갈 수 있는 사이트를 만들고자 하였다. 
-				다양한 실내 활동에 대해 알아가고, 비슷한 관심사와 취미를 공유하는 사람들과 온라인으로 소통하며 <br>
-				건강한 취미생활을 할 수 있으면 하는 바람이다.
-
-      		</p>
-		</div> 
-   	</article>
-
-   	<article class="main">
-		<h2 id="best">인기 취미 생활</h2>
-		<div class='all'>
-			<div class="post">
-				<div class="image"></div>
-				<div class="title">층간소음 없는 홈트</div>
-       		</div>
-       		<div class="post">
-				<div class="image"></div>
-				<div class="title">층간소음 없는 홈트</div>
-       		</div>
-       		<div class="post">
-				<div class="image"></div>
-				<div class="title">층간소음 없는 홈트</div>
-       		</div>
-       		<div class="post">
-				<div class="image"></div>
-				<div class="title">층간소음 없는 홈트</div>
-       		</div>
-       		<div class="post">
-				<div class="image"></div>
-				<div class="title">층간소음 없는 홈트</div>
-       		</div>
-		</div>
-   	</article>
-</section>
- <footer>
- 	<p>Copyright 2021 by SungEun</p>
- </footer>
 </body>
 </html>

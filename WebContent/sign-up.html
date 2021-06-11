@@ -3,11 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <link href="main.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/ionicons.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 <title>WWH 회원가입</title>
 <meta name="author" content="황수연">
 <meta name="discription" content="취향공유 웹사이트-회원가입">
 <meta name="keywords" content="취향, 일상, 공유">
-
+<script src="Header.js"></script>
 <style>
 	h1{ text-align:center }
 	input,button{ font-size:15px; height:40px; width:250px;}
@@ -57,19 +60,10 @@ function checkLog(){
 </head>
 
 <body onload="checkLog()">
-<header>
-    <h1><span><a href="/">WWH</a></span></h1>
-    <nav>
-	<ul>
-		<li><a href="hobby.html"> 취미 </a></li>
-		<li><a href="daily.html"> 일상 </a></li>
-		<li><a href="suggest.html"> 건의사항 </a></li>
-		<li><a href="#"> 마이페이지 </a></li>
-		<li style="font-size:22px; margin-top:5px;" id="logInButton"><a href="login.html"> 로그인 </a></li>
-	</ul>
-</nav>
-</header>
-
+	<div class="main-section">
+		<header class="hero-wrap js-fullheight" style="height:65px">
+			<script>setHeader();</script>
+		</header>
 <section>
 	<h1>회원가입</h1>
 	<form style="text-align:center">
@@ -79,6 +73,6 @@ function checkLog(){
 		<input type="button" id="signUp" onclick="mysignUp()" value="SignUp">
 	</form>
 </section>
-
+</div>
 </body>
 </html>

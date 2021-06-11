@@ -2,10 +2,14 @@
 <html>
  <head>
   	<meta charset="UTF-8">
-  	<link href="main.css" type="text/css" rel="stylesheet">
-  	<link href="hobby.css" type="text/css" rel="stylesheet">
+  	<link href="main.css?ver=1" type="text/css" rel="stylesheet">
+  	<link href="hobby.css?ver=1" type="text/css" rel="stylesheet">
+  	<link rel="stylesheet" type="text/css" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>WWH</title>
-    <script>
+    <script src="Header.js?ver=1"></script>
+    <script>    	
 		var post = null;
 		var img = "";
 		var title = "";
@@ -20,64 +24,67 @@
 				img = post[i].image;
 				title = post[i].title;
 				var index = post[i].index;
-				divtag = "<div class='post' onmouseover='mouseover(this)' onmouseout='mouseout(this)' onclick='getPostPage("+index+")'><div class='image'><img src='"+img+"' width='170' height='170'/></div><div class='hobby-title'>"+title+"</div></div>";
-				console.log(divtag)
+				divtag ="<div class='col-md-3' style='margin-bottom:20px'><div class='card' onmouseover='mouseover(this)' onmouseout='mouseout(this)' onclick='getPostPage("+index+")' style='height:270px'>";
+				divtag += "<img src='"+img+"' height='200' class='card-img-top' style='background-color:lightgray;'><div class='card-body'><h5 class='card-title'>"+title+"</h5></div></div></div>";
+				
 				document.write(divtag);
 			}
 		}
 		function mouseover(post) {
 			post.style.border = '1px solid gray';
-			post.style.backgroundColor = 'lightgray';
+			//post.style.backgroundColor = 'lightgray';
 		}
 		
 		function mouseout(post) {
 			post.style.border = 'none';
-			post.style.backgroundColor = 'transparent';
+			//post.style.backgroundColor = 'transparent';
 		}
 		function getPostPage(index) {
-			window.location.assign("dailyDetail.html?post_id="+index);
+			window.location.assign("detail.html?postType=postDaily&post_id="+index);
 		}
 		
 		function handlePosting () {
 			//if(로그인유저) {}
-			window.location.replace("writeDailyPost.html");
+			window.location.replace("writePost.html?postType=postDaily");
 		}
 		
 	</script>
  </head>
 <body>
-<header>
-    <h1><span><a href="/">WWH</a></span></h1>
-    <nav>
-	<ul>
-		<li><a href="hobby.html"> 취미 </a></li>
-		<li><a href="daily.html"> 일상 </a></li>
-		<li><a href="suggest.html"> 건의사항 </a></li>
-		<li><a href="#"> 마이페이지 </a></li>
-		<li style="font-size:22px; margin-top:5px;"><a href="login.html"> 로그인 </a></li>
-	</ul>
-</nav>
-</header>
-
-  
-<section>
-	<article class="hobby">
-	<table style="width:100%">
-		<tr>
-			<td> <h2 class="title">일상 | <span style="font-size:25px">일상의 이야기를 나누는 공간</span></h2>  </td>
-			<td style="text-align:right"> <button style="width:80px; height:30px" onclick="handlePosting()">작성하기</button> </td>
-		</tr>
-	</table>
+	<div class="main-section">
+		<header class="hero-wrap js-fullheight" style="height:65px">
+			<script>setHeader();</script>
+		</header>
+		<section class="ftco-section pb-0">
+			<article class="container">
+				<table style="width:100%">
+					<tr>
+						<td> <h2 class="title"><b>일상</b> | <span style="font-size:25px">일상의 이야기를 나누는 공간</span></h2>  </td>
+						<td style="text-align:right"> <button class="btn btn-outline-primary btn-round" onclick="handlePosting()">작성하기</button> </td>
+					</tr>
+				</table>
+				
+		   	</article>
+		</section>
+		<br/>
 		
-		<div>
-			<script>
-				display();
-			</script>
-		</div>
-   	</article>
-</section>
+		<section class="ftco-section ftco-section-2 bg-light" id="cards">
+			<article class="container">
+				<div class="row">
+						<script>
+							display();
+						</script>
+				</div>
+			</article>
+		</section>
+		 <footer class="ftco-section ftco-section-2">
+			<div class="col-md-12 text-center">
+	 			<p>Copyright &copy;2021 by SungEun</p>
+	 		</div>
+	 	</footer>
  <footer>
  	<p>Copyright 2021 by SungEun</p>
  </footer>
+ </div>
 </body>
 </html>

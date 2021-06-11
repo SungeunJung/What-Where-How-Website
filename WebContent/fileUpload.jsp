@@ -44,41 +44,27 @@
 			return result;
 		}
 		const type = getURLParams(location.search).type;
-	    console.log(type);
+		const key = getURLParams(location.search).key;
+		const post_id = getURLParams(location.search).post_id;
+		var post = JSON.parse(localStorage.getItem(key));
+		//var index = post[post.length-1].index;
+		if(post_id != -1) {
+			for(i=0; i<post.length; i++) {
+				if(post[i].index==post_id) {
+					post[i].image = "<%=filePath%>/fileUpload/<%=filename%>";
+				}
+			}
+		}
+		else {
+			if(post.length<2) index = 0;
+			else index = post.length-1;
+			post[index].image = "<%=filePath%>/fileUpload/<%=filename%>";
+		}
+		
+		localStorage.setItem(key,[JSON.stringify(post)]);
+		//console.log(post[index].image);
+		window.location.replace("/"+type+".html");
 	    
-		if(type=="hobby" && localStorage.getItem('postHobby')) {
-			var post = JSON.parse(localStorage.getItem('postHobby'));
-			//var index = post[post.length-1].index;
-			if(post.length<2) index = 0;
-			else index = post[post.length-2].index+1;
-			post[index].image = "<%=filePath%>/fileUpload/<%=filename%>";
-			localStorage.setItem('postHobby',[JSON.stringify(post)]);
-			console.log("<%=filePath%>");
-			console.log(post[index].image);
-			window.location.replace("hobby.html");
-		}
-		if(type=="daily" && localStorage.getItem('postDaily')) {
-			var post = JSON.parse(localStorage.getItem('postDaily'));
-			//var index = post[post.length-1].index;
-			if(post.length<2) index = 0;
-			else index = post[post.length-2].index+1;
-			post[index].image = "<%=filePath%>/fileUpload/<%=filename%>";
-			localStorage.setItem('postDaily',[JSON.stringify(post)]);
-			console.log("<%=filePath%>");
-			console.log(post[index].image);
-			window.location.replace("daily.html");
-		}
-		if(type=="suggest" && localStorage.getItem('postSuggest')) {
-			var post = JSON.parse(localStorage.getItem('postSuggest'));
-			//var index = post[post.length-1].index;
-			if(post.length<2) index = 0;
-			else index = post[post.length-2].index+1;
-			post[index].image = "<%=filePath%>/fileUpload/<%=filename%>";
-			localStorage.setItem('postSuggest',[JSON.stringify(post)]);
-			console.log("<%=filePath%>");
-			console.log(post[index].image);
-			window.location.replace("suggest.html");
-		}
 	</script>
 </body>
 </html>
