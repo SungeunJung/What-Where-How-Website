@@ -98,4 +98,10 @@ Git
 
  <img src=".\images\게시글 상세보기.png" width="450px" height="500px" title="게시글 상세보기" alt="WWH"></img><br/>
  
+</br></br>
+
+- 게시글 작성
+
+ <img src=".\images\게시글 작성.png" width="450px" height="400px" title="게시글 작성하기" alt="WWH"></img><br/>
+ <img src=".\images\게시글 작성2.jpg" width="450px" height="200px" title="게시글 작성하기" alt="WWH"></img><br/>
 </br>
