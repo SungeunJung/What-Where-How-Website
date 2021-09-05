@@ -76,6 +76,26 @@ Git
 - #### cos.jar 라이브러리로 파일 업로드 구현
 - #### Kakao API 연동하여 링크 공유 기능 구현
 
-</br>
+</br></br>
 
 > ## 결과물
+
+- 메인화면
+
+ <img src=".\images\메인화면.png" width="450px" height="500px" title="메인화면" alt="WWH"></img><br/>
+
+</br>
+
+- 게시판
+
+ <img src=".\images\취미공유게시판.JPG" width="450px" height="200px" title="취미공유 게시판" alt="WWH"></img><br/></br>
+ <img src=".\images\일상공유 게시판.jpg" width="450px" height="200px" title="일상공유 게시판" alt="WWH"></img><br/>
+ <img src=".\images\건의사항 게시판.png" width="450px" height="200px" title="건의사항 게시판" alt="WWH"></img><br/>
+ 
+</br>
+
+- 게시글 상세보기
+
+ <img src=".\images\게시글 상세보기.png" width="450px" height="500px" title="게시글 상세보기" alt="WWH"></img><br/>
+ 
+</br>
